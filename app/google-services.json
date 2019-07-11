@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "762539373733",
+    "firebase_url": "https://creditlifeline3.firebaseio.com",
+    "project_id": "creditlifeline3",
+    "storage_bucket": "creditlifeline3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762539373733:android:f8718df1f0d7965e",
+        "android_client_info": {
+          "package_name": "com.example.creditlifeline3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762539373733-v76nm4d1drobnqjjau4fjbgjuthcjg2a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.creditlifeline3",
+            "certificate_hash": "3d3547bb839b78f80422c4b43b7021bfdc5a78cb"
+          }
+        },
+        {
+          "client_id": "762539373733-f6cgkuapek34987gg3fi2ihg22nu90s8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOMjYR4Gpe4Jo2poLKUGXXwimRs4uWv7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762539373733-f6cgkuapek34987gg3fi2ihg22nu90s8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

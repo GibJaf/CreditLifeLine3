@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/parent_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/principalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="principal"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:gravity="start"
+        android:paddingLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/emiTextView"/>
+
+    <TextView
+        android:id="@+id/emiTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMI"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:gravity="end"
+        android:paddingRight="30dp"
+        app:layout_constraintStart_toEndOf="@id/principalTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

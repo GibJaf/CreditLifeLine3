@@ -10,5 +10,6 @@
     <string name="enterEndDate">End Date</string>
     <string name="saveButton">Save</string>
 
+    <string name="enterTenure">Enter Tenure [in months]</string>
     <string name="rupeeSymbol">\u20B9</string>
 </resources>

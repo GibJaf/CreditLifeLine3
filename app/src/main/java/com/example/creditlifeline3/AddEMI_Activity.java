@@ -200,8 +200,6 @@ public class AddEMI_Activity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
-        final String rupee = getString(R.string.rupeeSymbol);
-
 
 
         String id = databaseEMI.push().getKey();
@@ -213,12 +211,12 @@ public class AddEMI_Activity extends AppCompatActivity {
         databaseEMI.child(id).setValue(emi_obj).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                //Toast.makeText(AddEMI_Activity.this,"Load details saved ! ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddEMI_Activity.this,"Load details saved ! ",Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-               // Toast.makeText(AddEMI_Activity.this," Details could not be saved !",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddEMI_Activity.this," Details could not be saved !",Toast.LENGTH_SHORT).show();
             }
         });
 

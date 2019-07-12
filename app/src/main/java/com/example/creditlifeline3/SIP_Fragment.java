@@ -54,12 +54,13 @@ public class SIP_Fragment extends Fragment {
         sipRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         sipArrayList = new ArrayList<>();
         goToAddSIP_Button = view.findViewById(R.id.goToAddSIP_Button);
+        goToAddSIP_ActivityIntent = new Intent(getContext(),AddSIP_Activity.class);
         rupeeSymbol = getContext().getString(R.string.rupeeSymbol);
 
         goToAddSIP_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Go to Add SIP Activity", Toast.LENGTH_SHORT).show();
+                startActivity(goToAddSIP_ActivityIntent);
             }
         });
 

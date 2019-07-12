@@ -1,6 +1,7 @@
 package com.example.creditlifeline3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ public class EMI_Adapter extends RecyclerView.Adapter<EMI_Adapter.ViewHolder> {
     private ArrayList<EMI> EMI_List = new ArrayList<>();
     private Context context;
     String rupeeSymbol;
+    Intent goToEMI_Breakup;
 
     public EMI_Adapter(ArrayList<EMI> EMI_List, Context context , String rupeeSymbol) {
         this.EMI_List = EMI_List;
@@ -38,10 +40,20 @@ public class EMI_Adapter extends RecyclerView.Adapter<EMI_Adapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
         holder.principalTextView.setText(rupeeSymbol+" "+EMI_List.get(position).principal);
         holder.emiTextView.setText(rupeeSymbol+" "+EMI_List.get(position).emi);
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToEMI_Breakup = new Intent(context , EMI_BreakupActivity.class);
+                goToEMI_Breakup.putExtra("emi_installment",EMI_List.get(position).getEmi());
+                goToEMI_Breakup.putExtra("emi_principal",EMI_List.get(position).getPrincipal());
+                goToEMI_Breakup.putExtra("emi_interest",EMI_List.get(position).getInterest());
+                context.startActivity(goToEMI_Breakup);
+            }
+        });
     }
 
     @Override

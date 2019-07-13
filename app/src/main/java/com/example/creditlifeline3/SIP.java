@@ -3,8 +3,8 @@ package com.example.creditlifeline3;
 public class SIP {
 
     String id;
-    Long principal , maturity_value;
-    int tenure;
+    Long principal , interest , maturity_value;
+    Integer tenure;
     Double rate;
 
     public SIP(){
@@ -36,5 +36,16 @@ public class SIP {
 
     public Double getRate() {
         return rate;
+    }
+
+    public void calculateInterest(){
+        this.interest = this.maturity_value - (this.principal * this.tenure);
+    }
+
+    public Long TotalPrincipal(){
+        if((this.principal != null) && (this.tenure != null))
+            return  this.principal * this.tenure;
+
+        return Long.valueOf(-1);
     }
 }

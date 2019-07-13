@@ -12,4 +12,10 @@
 
     <string name="enterTenure">Enter Tenure [in months]</string>
     <string name="rupeeSymbol">\u20B9</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <!-- Login Activity -->
+    <string name="usernameEditText">Username</string>
+    <string name="passwordEditText">Password</string>
+
 </resources>

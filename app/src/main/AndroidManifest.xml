@@ -9,16 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EMI_BreakupActivity"></activity>
-        <activity android:name=".AddSIP_Activity" />
-        <activity android:name=".AddEMI_Activity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".SIP_BreakupActivity" />
+        <activity android:name=".EMI_BreakupActivity" />
+        <activity android:name=".AddSIP_Activity" />
+        <activity android:name=".AddEMI_Activity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 

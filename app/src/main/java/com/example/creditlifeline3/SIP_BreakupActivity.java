@@ -16,19 +16,18 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class EMI_BreakupActivity extends AppCompatActivity {
+public class SIP_BreakupActivity extends AppCompatActivity {
 
     private static final String TAG = "EMI_BreakupActivity";
-    PieChart EMI_piechart;
-    TextView emiTextView , principalTextView , interestTextView;
+    PieChart SIP_piechart;
+    TextView sipTextView , interestTextView , futureValueTextView;
     String rupeeSymbol;
-    EMI emi_obj;
+    SIP sip_obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: started");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emi__breakup);
+        setContentView(R.layout.activity_sip__breakup);
 
         Initialize();
         getIncomingIntent();
@@ -38,52 +37,56 @@ public class EMI_BreakupActivity extends AppCompatActivity {
 
     private void Initialize(){
         Log.d(TAG, "Initialize: started");
-        EMI_piechart = findViewById(R.id.EMI_piechart);
-        emiTextView = findViewById(R.id.emiTextView);
-        principalTextView = findViewById(R.id.principalTextView);
+        SIP_piechart = findViewById(R.id.SIP_piechart);
+        sipTextView = findViewById(R.id.sipTextView);
         interestTextView = findViewById(R.id.interestTextView);
+        futureValueTextView = findViewById(R.id.futureValueTextView);
         rupeeSymbol = getString(R.string.rupeeSymbol);
-        emi_obj = new EMI();
+        sip_obj = new SIP();
     }
 
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: started");
-        if(getIntent().hasExtra("emi_installment") && getIntent().hasExtra("emi_principal") && getIntent().hasExtra("emi_interest")) {
-            emi_obj.emi = getIntent().getLongExtra("emi_installment", 0);
-            emi_obj.principal = getIntent().getLongExtra("emi_principal", 0);
-            emi_obj.interest = getIntent().getLongExtra("emi_interest", 0);
-
+        if(getIntent().hasExtra("sip_installment") && getIntent().hasExtra("sip_futureValue")){
+            sip_obj.principal = getIntent().getLongExtra("sip_installment", 0);
+            sip_obj.maturity_value = getIntent().getLongExtra("sip_futureValue", 0);
+            sip_obj.tenure = getIntent().getIntExtra("sip_tenure",0);
         }
     }
 
     private void setTextViews(){
         Log.d(TAG, "setTextViews: started");
-        emiTextView.setText(rupeeSymbol+" "+emi_obj.emi);
-        principalTextView.setText(rupeeSymbol+" "+emi_obj.principal);
-        interestTextView.setText(rupeeSymbol+" "+emi_obj.interest);
+        sipTextView.setText(rupeeSymbol+" "+sip_obj.TotalPrincipal());
+
+        sip_obj.calculateInterest();
+        interestTextView.setText(rupeeSymbol+" "+sip_obj.interest);
+        //Long interest = sip_obj.maturity_value - sip_obj.principal*sip_obj.tenure;
+
+        futureValueTextView.setText(rupeeSymbol+" "+sip_obj.maturity_value);
     }
 
     private void generatePieChart(){
         Log.d(TAG, "generatePieChart: started");
-        EMI_piechart.setUsePercentValues(true);
-        EMI_piechart.getDescription().setEnabled(false);
-        EMI_piechart.setExtraOffsets(5,10,5,5);
 
-        EMI_piechart.setDragDecelerationFrictionCoef(0.95f);
+        SIP_piechart.setUsePercentValues(true);
+        SIP_piechart.getDescription().setEnabled(false);
+        SIP_piechart.setExtraOffsets(5,10,5,5);
 
-        EMI_piechart.setDrawHoleEnabled(true);
-        EMI_piechart.setHoleColor(Color.WHITE);
-        EMI_piechart.setTransparentCircleRadius(60f);
+        SIP_piechart.setDragDecelerationFrictionCoef(0.95f);
+
+        SIP_piechart.setDrawHoleEnabled(true);
+        SIP_piechart.setHoleColor(Color.WHITE);
+        SIP_piechart.setTransparentCircleRadius(60f);
 
         ArrayList<PieEntry> yValues = new ArrayList<>();
 
-        yValues.add(new PieEntry(emi_obj.principal,"Principal"));
-        yValues.add(new PieEntry(emi_obj.interest,"Interest"));
+        yValues.add(new PieEntry(sip_obj.TotalPrincipal(),"Principal"));
+        yValues.add(new PieEntry(sip_obj.interest,"Interest"));
 
         Description description = new Description();
-        description.setText("EMI breakup");
+        description.setText("SIP breakup");
         description.setTextSize(25);
-        EMI_piechart.setDescription(description);
+        SIP_piechart.setDescription(description);
 
         PieDataSet dataSet = new PieDataSet(yValues,"Entities");
         dataSet.setSliceSpace(4f);
@@ -94,6 +97,7 @@ public class EMI_BreakupActivity extends AppCompatActivity {
         data.setValueTextSize(10f);
         data.setValueTextColor(Color.YELLOW);
 
-        EMI_piechart.setData(data);
+        SIP_piechart.setData(data);
     }
+
 }
